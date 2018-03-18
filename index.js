@@ -9,7 +9,8 @@ app.post('/createUser', (req, res) => {
     .createUser({
       username: req.body.username,
       password: req.body.password,
-      email: req.body.email
+      email: req.body.email,
+      dominantusername: req.body.dominantusername
     })
     .then(() => res.sendStatus(200))
 })
@@ -35,8 +36,44 @@ app.post('/addTask', (req, res) => {
 
   }).then(() => res.sendStatus(200))
 })
+app.post('/addDominant', (req, res) => {
+  store
+    .addDominant({
+      username: req.body.username,
+      dominantusername: req.body.dominantusername
 
 
+  }).then(() => res.sendStatus(200))
+})
+app.post('/removeDominant', (req, res) => {
+  store
+    .removeDominant({
+      username: req.body.username,
+      dominantusername: req.body.dominantusername
+
+
+  }).then(() => res.sendStatus(200))
+})
+app.post('/deleteTask', (req, res) => {
+  store
+    .deleteTask({
+      username: req.body.username,
+      task: req.body.task
+
+
+  }).then(() => res.sendStatus(200))
+})
+app.post('/updateTask', (req, res) => {
+  store
+    .updateTask({
+      username: req.body.username,
+      dominantusername: req.body.dominantusername,
+      completed: req.body.completed,
+      task: req.body.task,
+      due: req.body.due
+
+  }).then(() => res.sendStatus(200))
+})
 app.listen(7555, () => {
   console.log('Server running on http://localhost:7555')
 })

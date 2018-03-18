@@ -4,7 +4,8 @@ CreateUser.addEventListener('submit', (e) => {
   const username = CreateUser.querySelector('.username').value
   const password = CreateUser.querySelector('.password').value
   const email = CreateUser.querySelector('.email').value
-  post('/createUser', { username, password, email })
+  const dominantusername = CreateUser.querySelector('.dominantusername').value
+  post('/createUser', { username, password, email, dominantusername })
 })
 const Login = document.querySelector('.Login')
 Login.addEventListener('submit', (e) => {
@@ -30,6 +31,37 @@ addTask.addEventListener('submit', (e) => {
       if (status === 200) alert('add success')
       else alert('add failed')
     })
+})
+const deleteTask = document.querySelector('.deleteTask')
+deleteTask.addEventListener('submit', (e) => {
+  e.preventDefault()
+  const username = deleteTask.querySelector('.username').value
+  const task = deleteTask.querySelector('.task').value
+  post('/deleteTask', { username, task})
+    .then(({ status }) => {
+      if (status === 200) alert('delete success')
+      else alert('delete failed')
+    })
+})
+const addDominant = document.querySelector('.addDominant')
+addDominant.addEventListener('submit', (e) => {
+  e.preventDefault()
+  const username = addDominant.querySelector('.username').value
+  const dominantusername = addDominant.querySelector('.dominantusername').value
+  post('/addDominant', { username, dominantusername}).then(({ status }) => {
+    if (status === 200) alert('Add success')
+    else alert('add failed')
+  })
+})
+const removeDominant = document.querySelector('.removeDominant')
+removeDominant.addEventListener('submit', (e) => {
+  e.preventDefault()
+  const username = removeDominant.querySelector('.username').value
+  const dominantusername = addDominant.querySelector('.dominantusername').value
+  post('/removeDominant', { username, dominantusername}).then(({ status }) => {
+    if (status === 200) alert('Removal success')
+    else alert('Removal failed')
+  })
 })
 function post (path, data) {
   return window.fetch(path, {
