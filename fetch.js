@@ -5,7 +5,7 @@ module.exports = {
   GetTasks ({ username }) {
     console.log(`Retrieving tasks for ${username}`)
     // return knex.select('task', 'due').from('tasks').where('username', `${username}`).then(function(tasks) {
-    return knex('tasks').select('task', 'due').where('username', `${username}`).then(function(result) {
+    return knex('tasks').select('task', 'due').where('username', 'Zoey2').then(function(result) {
       result.forEach(function(value) {
         dataArr.push(value)
       })
@@ -14,7 +14,9 @@ module.exports = {
 
     })
 
-
+    return dataArr
   }
 
 }
+
+return dataArr

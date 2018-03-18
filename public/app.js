@@ -12,7 +12,7 @@ const GetTasks = document.querySelector('.getTasks')
 GetTasks.addEventListener('submit', (e) => {
   e.preventDefault()
   const username = GetTasks.querySelector('.username').value
-  get('/getTasks', { username })
+  post('/getTasks', { username })
 })
 
 const ChangePassword = document.querySelector('.ChangePassword')
