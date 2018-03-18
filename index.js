@@ -8,10 +8,11 @@ var router = express.Router()
 app.use(express.static('public'))
 app.use(bodyParser.json())
 
-app.get('/getTasks', (req, res) => {
+app.post('/getTasks', (req, res) => {
   fetch
     .GetTasks({
-      username: req.body.username
+      username: req.body.username,
+      userid: req.body.userid
     }).then(function(tasks) {
       res.send(tasks)
     })
