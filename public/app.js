@@ -7,6 +7,14 @@ CreateUser.addEventListener('submit', (e) => {
   const dominantusername = CreateUser.querySelector('.dominantusername').value
   post('/createUser', { username, password, email, dominantusername })
 })
+
+const ChangePassword = document.querySelector('.ChangePassword')
+ChangePassword.addEventListener('submit', (e) => {
+  e.preventDefault()
+  const username = ChangePassword.querySelector('.username').value
+  const password = ChangePassword.querySelector('.password').value
+  post('/changePassword', {username, password})
+})
 const Login = document.querySelector('.Login')
 Login.addEventListener('submit', (e) => {
   e.preventDefault()
@@ -27,6 +35,19 @@ addTask.addEventListener('submit', (e) => {
   const task = addTask.querySelector('.task').value
   const due = addTask.querySelector('.due').value
   post('/addTask', { username, dominantusername, completed, task, due })
+    .then(({ status }) => {
+      if (status === 200) alert('add success')
+      else alert('add failed')
+    })
+})
+const updateTask = document.querySelector('.updateTask')
+updateTask.addEventListener('submit', (e) => {
+  e.preventDefault()
+  const username = updateTask.querySelector('.username').value
+  const completed = updateTask.querySelector('.completed').value
+  const task = updateTask.querySelector('.task').value
+  const due = updateTask.querySelector('.due').value
+  post('/updateTask', { username, completed, task, due })
     .then(({ status }) => {
       if (status === 200) alert('add success')
       else alert('add failed')

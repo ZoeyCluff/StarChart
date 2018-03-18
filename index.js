@@ -14,6 +14,15 @@ app.post('/createUser', (req, res) => {
     })
     .then(() => res.sendStatus(200))
 })
+app.post('/ChangePassword', (req, res) => {
+  store
+    .ChangePassword({
+      username: req.body.username,
+      password: req.body.password,
+
+    })
+    .then(() => res.sendStatus(200))
+})
 app.post('/login', (req, res) => {
   store
     .authenticate({
@@ -67,7 +76,6 @@ app.post('/updateTask', (req, res) => {
   store
     .updateTask({
       username: req.body.username,
-      dominantusername: req.body.dominantusername,
       completed: req.body.completed,
       task: req.body.task,
       due: req.body.due

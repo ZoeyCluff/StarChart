@@ -24,6 +24,15 @@ module.exports = {
       due
     })
   },
+  updateTask ({ username, completed, task, due }) {
+    console.log(`Updating task ${task}`)
+    return knex('tasks').where('username', `${username}`).andWhere('task', `${task}`).update({
+      username,
+      completed,
+      task,
+      due
+    })
+  },
   deleteTask ({ username, task }) {
     console.log(`Delete task ${task}`)
     return knex('tasks').where('task', `${task}`).andWhere('username', `${username}`).del().limit(1)
@@ -37,6 +46,15 @@ module.exports = {
       username,
       email,
       dominantusername
+    })
+  },
+  ChangePassword ({ username, password}) {
+    console.log(`Changing password for Username ${username}`)
+    const { salt, hash } = saltHashPassword({ password })
+    return knex('user').where('username', `${username}`).update({
+      salt,
+      encrypted_password: hash
+
     })
   },
   authenticate ({ username, password }) {
