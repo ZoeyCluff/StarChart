@@ -8,6 +8,13 @@ CreateUser.addEventListener('submit', (e) => {
   post('/createUser', { username, password, email, dominantusername })
 })
 
+const GetTasks = document.querySelector('.getTasks')
+GetTasks.addEventListener('submit', (e) => {
+  e.preventDefault()
+  const username = GetTasks.querySelector('.username').value
+  get('/getTasks', { username })
+})
+
 const ChangePassword = document.querySelector('.ChangePassword')
 ChangePassword.addEventListener('submit', (e) => {
   e.preventDefault()

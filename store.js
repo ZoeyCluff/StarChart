@@ -2,6 +2,8 @@ const crypto = require('crypto')
 const knex = require('knex')(require('./knexfile'))
 module.exports = {
 
+
+
   addDominant ({ username, dominantusername }) {
     console.log(`Adding Dominant ${dominantusername} to Username ${username}`)
     return knex('user').where('username', `${username}`).update({

@@ -1,9 +1,28 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const store = require('./store')
+const fetch = require('./fetch')
 const app = express()
+var router = express.Router()
 app.use(express.static('public'))
 app.use(bodyParser.json())
+
+// app.post('/getTasks', (req, res) => {
+//   fetch
+//     .GetTasks({
+//       username: req.body.username
+//     })
+//     .then(() => res.send(dataArr))
+// })
+router.route('/getTasks')
+  .get(function(req, res) {
+    fetch
+      .GetTasks({
+        username: req.body.username
+      }).then(function(tasks) {
+        res.json({tasks})
+      })
+  })
 app.post('/createUser', (req, res) => {
   store
     .createUser({
