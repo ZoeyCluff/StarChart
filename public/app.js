@@ -38,11 +38,12 @@ const addTask = document.querySelector('.addTask')
 addTask.addEventListener('submit', (e) => {
   e.preventDefault()
   const username = addTask.querySelector('.username').value
+  const userid = add.Task.querySelector('.userid').value
   const dominantusername = addTask.querySelector('.dominantusername').value
   const completed = addTask.querySelector('.completed').value
   const task = addTask.querySelector('.task').value
   const due = addTask.querySelector('.due').value
-  post('/addTask', { username, dominantusername, completed, task, due })
+  post('/addTask', { username, userid, dominantusername, completed, task, due })
     .then(({ status }) => {
       if (status === 200) alert('add success')
       else alert('add failed')

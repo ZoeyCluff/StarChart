@@ -16,10 +16,11 @@ module.exports = {
       dominantusername: 'unowned'
     })
   },
-  addTask ({ username, dominantusername, completed, task, due }) {
+  addTask ({ username, userid, dominantusername, completed, task, due }) {
     console.log(`Add task ${task}`)
     return knex('tasks').insert({
       username,
+      userid,
       dominantusername,
       completed,
       task,
