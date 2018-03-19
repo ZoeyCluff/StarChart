@@ -8,20 +8,14 @@ var router = express.Router()
 app.use(express.static('public'))
 app.use(bodyParser.json())
 
-app.get('/getTasks', (req, res) => {
+app.post('/getTasks', (req, res) => {
   fetch.GetTasks({
       username: req.body.username,
-      userid: req.headers.userid
+      userid: req.body.userid
     }).then((result) => {
       res.send(result)
-    }, (e) => {
-      console.log("from express" + " " + e)
+      console.log(result)
     })
-
-    // .then(function(result) {
-    //  res.send(result)
-    //  console.log("from express" + " " + JSON.stringify(result))
-   //  })
 
 })
 app.post('/createUser', (req, res) => {

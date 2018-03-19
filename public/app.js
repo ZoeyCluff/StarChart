@@ -13,7 +13,10 @@ GetTasks.addEventListener('submit', (e) => {
   e.preventDefault()
   const username = GetTasks.querySelector('.username').value
   const userid = GetTasks.querySelector('.userid').value
-  post('/getTasks', { username, userid })
+  post('/getTasks', { username, userid }).then((result) => {
+    alert(result)
+    console.log(result)
+  })
 })
 
 const ChangePassword = document.querySelector('.ChangePassword')

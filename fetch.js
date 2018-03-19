@@ -9,6 +9,7 @@ module.exports = {
 
     return knex('tasks').select('task', 'due').where('userid', `${userid}`).then(function(result) {
       return result
+      
     })
 
 
